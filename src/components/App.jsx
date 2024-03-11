@@ -21,29 +21,21 @@ class App extends Component {
     this.state.good + this.state.neutral + this.state.bad;
 
   countPositiveFeedbackPercentage = () => {
+    const { good, neutral, bad } = this.state;
     return (
-      (this.state.good * 100) /
-      (this.state.good + this.state.neutral + this.state.bad === 0
-        ? 1
-        : this.state.good + this.state.neutral + this.state.bad)
+      (good * 100) /
+      (good + neutral + bad === 0 ? 1 : good + neutral + bad)
     ).toFixed(2);
   };
 
   render() {
     const { good, neutral, bad } = this.state;
+    const arrFeedback = ['Good', 'Neutral', 'Bad'];
     return (
       <div>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            text="Good"
-            onLeaveFeedback={this.incrementFeedback}
-          />
-          <FeedbackOptions
-            text="Neutral"
-            onLeaveFeedback={this.incrementFeedback}
-          />
-          <FeedbackOptions
-            text="Bad"
+            arrFeedback={arrFeedback}
             onLeaveFeedback={this.incrementFeedback}
           />
         </Section>
